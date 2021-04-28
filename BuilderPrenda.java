@@ -9,6 +9,8 @@ class BuilderPrenda {
     static ArrayList<String> tiposCalzados = new ArrayList<>();
     static ArrayList<String> tiposAccesorios = new ArrayList<>();
 
+    Prenda borrador;
+
     ArrayList<String> getTiposSuperiores() {
         return tiposSuperiores;
     }
@@ -27,9 +29,23 @@ class BuilderPrenda {
 
     public Prenda cargarPrenda() {
         Prenda prenda = indicarTipo();
+        if (!continuar(prenda)) 
+            return borrador;
         prenda.elegirMaterial();
+        if (!continuar(prenda)) 
+            return borrador;
         prenda.elegirColor();
+        if (!continuar(prenda)) 
+            return borrador;
         prenda.elegirColorSecundario();
+
+        return prenda;
+    }
+
+    Prenda continuarBorrador() {
+        Prenda prenda = borrador;
+        
+        // Identificaria que le falta al borrador para completarlo
 
         return prenda;
     }
@@ -59,6 +75,20 @@ class BuilderPrenda {
             System.out.print("No se indico un tipo correcto");
             // Hacer Prenda fallada
         }
+    }
+
+    boolean continuar(Prenda unaPrenda) {
+        System.out.println("Desea continuar?");
+
+        Scanner scan = new Scanner(System.in);
+
+        if (scan.nextLine().startsWith("S")) 
+            return true;
+        else {
+            this.borrador = unaPrenda;
+            return false;
+        }
+
     }
 }
 
