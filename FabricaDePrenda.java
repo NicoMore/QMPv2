@@ -1,12 +1,32 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-enum Categoria { SUPERIOR, INFERIOR, CALZADO, ACCESORIO; }
+enum Categoria { Superior, Inferior, Calzado, Accesorio; }
 
-abstract class FabricaDePrenda {
+class FabricaDePrenda {
+    static ArrayList<String> tiposSuperiores = new ArrayList<>();
+    static ArrayList<String> tiposInferiores = new ArrayList<>();
+    static ArrayList<String> tiposCalzados = new ArrayList<>();
+    static ArrayList<String> tiposAccesorios = new ArrayList<>();
+
+    ArrayList<String> getTiposSuperiores() {
+        return tiposSuperiores;
+    }
+
+    ArrayList<String> getTiposInferiores() {
+        return tiposInferiores;
+    }
+
+    ArrayList<String> getTiposCalzados() {
+        return tiposCalzados;
+    }
+
+    ArrayList<String> getTiposAccesorios() {
+        return tiposAccesorios;
+    }
+
     public Prenda cargarPrenda() {
-        Prenda prenda = nuevaPrenda();
-        prenda.indicarTipo();
+        Prenda prenda = indicarTipo();
         prenda.elegirMaterial();
         prenda.elegirColor();
         prenda.elegirColorSecundario();
@@ -16,10 +36,10 @@ abstract class FabricaDePrenda {
 
     public static int seleccionarCategoria() {
         System.out.println("Seleccione categoria:");
-        System.out.print("1. Prenda superior");
-        System.out.print("2. Prenda inferior");
-        System.out.print("3. Calzado");
-        System.out.print("4. Accesorio");
+        System.out.println("1. Prenda superior");
+        System.out.println("2. Prenda inferior");
+        System.out.println("3. Calzado");
+        System.out.println("4. Accesorio");
 
         try { 
             Scanner scan = new Scanner(System.in);
@@ -34,30 +54,32 @@ abstract class FabricaDePrenda {
         }      
     }
 
-    abstract Prenda nuevaPrenda();
+    
+    Prenda indicarTipo() {
+        Scanner scan = new Scanner(System.in);
 
-}
+        System.out.println("Indique el tipo de prenda que desea crear:");
+        String tipoElegido = scan.nextLine();
+        scan.close();
 
-class FabricaDePrendaSuperior extends FabricaDePrenda {
-    Prenda nuevaPrenda() {
-        return new PrendaSuperior();
+        return identificarTipo(tipoElegido);
+    }
+
+    Prenda identificarTipo(String unTipo) { // Se podria hacer una funcion getter mas sencilla
+        try {
+            if (this.getTiposSuperiores().contains(unTipo))
+                return new PrendaSuperior(unTipo);
+            else if (this.getTiposInferiores().contains(unTipo))
+                return new PrendaInferior(unTipo);
+            else if (this.getTiposCalzados().contains(unTipo))
+                return new Calzado(unTipo);
+            else if (this.getTiposAccesorios().contains(unTipo))
+                return new Accesorio(unTipo);
+        }   
+        catch (Exception noSeEncontroTipo) {
+            System.out.print("No se indico un tipo correcto");
+            // Hacer Prenda fallada
+        }
     }
 }
 
-class FabricaDePrendaInferior extends FabricaDePrenda {
-    Prenda nuevaPrenda() {
-        return new PrendaInferior();
-    }
-}
-
-class FabricaDeCalzado extends FabricaDePrenda {
-    Prenda nuevaPrenda() {
-        return new Calzado();
-    }
-}
-
-class FabricaDeAccesorio extends FabricaDePrenda {
-    Prenda nuevaPrenda() {
-        return new Accesorio();
-    }
-}

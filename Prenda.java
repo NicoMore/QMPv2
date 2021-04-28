@@ -51,24 +51,28 @@ abstract class Prenda {
         }
     }
 
-    void indicarTipo() {
-        // Solicitaria que usuario seleccione de la lista tiposCompatibles (de las subclases) un tipo.
-    }
-
 }
 
 class PrendaSuperior extends Prenda {
-    ArrayList<String> tiposCompatibles = new ArrayList<>();
+    PrendaSuperior(String tipo) {
+        this.tipo = tipo;
+    }
 }
 
 class PrendaInferior extends Prenda {
-    ArrayList<String> tiposCompatibles = new ArrayList<>();
+    PrendaInferior(String tipo) {
+        this.tipo = tipo;
+    }
 }
 
 class Calzado extends Prenda {
-    ArrayList<String> tiposCompatibles = new ArrayList<>();
+    Calzado(String tipo) {
+        this.tipo = tipo;
+    }
 }
 
 class Accesorio extends Prenda {
-    ArrayList<String> tiposCompatibles = new ArrayList<>();
+    Accesorio(String tipo) {
+    this.tipo = tipo;
+}
 }
