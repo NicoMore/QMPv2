@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 enum Categoria { Superior, Inferior, Calzado, Accesorio; }
 
-class FabricaDePrenda {
+class BuilderPrenda {
     static ArrayList<String> tiposSuperiores = new ArrayList<>();
     static ArrayList<String> tiposInferiores = new ArrayList<>();
     static ArrayList<String> tiposCalzados = new ArrayList<>();
@@ -34,27 +34,6 @@ class FabricaDePrenda {
         return prenda;
     }
 
-    public static int seleccionarCategoria() {
-        System.out.println("Seleccione categoria:");
-        System.out.println("1. Prenda superior");
-        System.out.println("2. Prenda inferior");
-        System.out.println("3. Calzado");
-        System.out.println("4. Accesorio");
-
-        try { 
-            Scanner scan = new Scanner(System.in);
-
-            int eleccion = scan.nextInt();
-            scan.close();
-            return eleccion;
-        }
-        catch (IllegalArgumentException tipoErroneo) {
-            System.out.println("Se introdujo un valor invalido.");
-            return 0;
-        }      
-    }
-
-    
     Prenda indicarTipo() {
         Scanner scan = new Scanner(System.in);
 

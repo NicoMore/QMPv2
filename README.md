@@ -18,19 +18,18 @@ Decisiones en Primera Iteracion:
 
 
 Requerimientos segunda iteracion:
-    -Especificar trama de tela.
+    -Especificar trama de tela. ✓
     -Iniciar creacion de prenda por el tipo. ✓
-    -Segunda etapa de creacion sera sobre el material.
+    -Segunda etapa de creacion sera sobre el material. ✓
     -Poder guardar borrador.
-    -Trama default es lisa.
-    -Guardar prenda solo si es valida.
+    -Trama default es lisa. ✓
+    -Guardar prenda solo si es valida. ✓ Es valida por default al hacer verificaciones a lo largo de la creacion
     -Poder recibir sugerencias de uniformes.
     -Uniforme sera prenda superior, inferior y calzado.
     -Posibilitar configuracion de uniformes especificos.
 
 Pasos para integrar la primera iteracion en la segunda:
     -Unificar seleccion de tipos y categorias en un paso, al ser dependientes. ✓
-    -Unificar todo lo asociado a materiales en una sola clase Material.
     -Hacer lista de prendas agregadas, acorde a su categoria.
 
 Decisiones en Segunda Iteracion:

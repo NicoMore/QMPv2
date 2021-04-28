@@ -4,6 +4,7 @@ import java.util.Scanner;
 abstract class Prenda {
     String tipo;
     String material;
+    String trama;
     String color;
     String colorSecundario;
 
@@ -13,6 +14,15 @@ abstract class Prenda {
             System.out.println("Indique material:");
 
             this.material = scan.nextLine();
+
+            System.out.println("Desea indicar una trama?");
+            if (scan.nextLine().startsWith("S")) {
+                System.out.println("Indique trama:");
+                this.trama = scan.nextLine();
+            } 
+            else 
+                this.trama = "Lisa";
+
             scan.close();
         }
         catch (IllegalArgumentException tipoErroneo) {
