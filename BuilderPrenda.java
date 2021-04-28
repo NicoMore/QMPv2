@@ -9,25 +9,25 @@ class BuilderPrenda {
     static ArrayList<String> tiposCalzados = new ArrayList<>();
     static ArrayList<String> tiposAccesorios = new ArrayList<>();
 
-    Prenda borrador;
+    static Prenda borrador;
 
-    ArrayList<String> getTiposSuperiores() {
+    static ArrayList<String> getTiposSuperiores() {
         return tiposSuperiores;
     }
 
-    ArrayList<String> getTiposInferiores() {
+    static ArrayList<String> getTiposInferiores() {
         return tiposInferiores;
     }
 
-    ArrayList<String> getTiposCalzados() {
+    static ArrayList<String> getTiposCalzados() {
         return tiposCalzados;
     }
 
-    ArrayList<String> getTiposAccesorios() {
+    static ArrayList<String> getTiposAccesorios() {
         return tiposAccesorios;
     }
 
-    public Prenda cargarPrenda() {
+    public static Prenda cargarPrenda() {
         Prenda prenda = indicarTipo();
         if (!continuar(prenda)) 
             return borrador;
@@ -50,7 +50,7 @@ class BuilderPrenda {
         return prenda;
     }
 
-    Prenda indicarTipo() {
+    static Prenda indicarTipo() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Indique el tipo de prenda que desea crear:");
@@ -60,15 +60,15 @@ class BuilderPrenda {
         return identificarTipo(tipoElegido);
     }
 
-    Prenda identificarTipo(String unTipo) { // Se podria hacer una funcion getter mas sencilla
+    static Prenda identificarTipo(String unTipo) { // Se podria hacer una funcion getter mas sencilla
         try {
-            if (this.getTiposSuperiores().contains(unTipo))
+            if (getTiposSuperiores().contains(unTipo))
                 return new PrendaSuperior(unTipo);
-            else if (this.getTiposInferiores().contains(unTipo))
+            else if (getTiposInferiores().contains(unTipo))
                 return new PrendaInferior(unTipo);
-            else if (this.getTiposCalzados().contains(unTipo))
+            else if (getTiposCalzados().contains(unTipo))
                 return new Calzado(unTipo);
-            else if (this.getTiposAccesorios().contains(unTipo))
+            else if (getTiposAccesorios().contains(unTipo))
                 return new Accesorio(unTipo);
         }   
         catch (Exception noSeEncontroTipo) {
@@ -77,15 +77,18 @@ class BuilderPrenda {
         }
     }
 
-    boolean continuar(Prenda unaPrenda) {
+    static boolean continuar(Prenda unaPrenda) {
         System.out.println("Desea continuar?");
 
         Scanner scan = new Scanner(System.in);
 
-        if (scan.nextLine().startsWith("S")) 
+        if (scan.nextLine().startsWith("S")) {
+            scan.close(); 
             return true;
+        }
         else {
-            this.borrador = unaPrenda;
+            borrador = unaPrenda;
+            scan.close();
             return false;
         }
 

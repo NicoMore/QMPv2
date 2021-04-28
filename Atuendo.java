@@ -1,13 +1,25 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 class Atuendo {
     PrendaSuperior prendaSuperior;
     PrendaInferior prendaInferior;
     Calzado calzado;
-    ArrayList<Accesorio> accesorios = new ArrayList<>();
+    List<Accesorio> accesorios = new List<>();
 
-
-    void generarAtuendo() {
-        
+    Atuendo(PrendaSuperior prendaSuperior, PrendaInferior prendaInferior, Calzado calzado, List<Accesorio> accesorios) {
+        this.prendaSuperior = prendaSuperior;
+        this.prendaInferior = prendaInferior;
+        this.calzado = calzado;
+        this.accesorios = accesorios;
     }
+}
+
+class Uniforme extends Atuendo {
+
+    Uniforme(PrendaSuperior prendaSuperior, PrendaInferior prendaInferior, Calzado calzado) {
+        super(prendaSuperior, prendaInferior, calzado, Collections.emptyList());
+    }
+
 }
